@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const UserSchema = new Schema({
+  profile: {
+    type: String,
+    enum: ['client', 'secretary', 'professor', 'doctor'],
+    default: 'client'
+  },
   name: {
     type: String,
     required: true
@@ -14,10 +19,22 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  profile: {
-    type: String,
-    enum: ['client', 'employee'],
-    default: 'client'
+  cpf: String,
+  identity: String,
+  dob: Date,
+  creditCard: {
+    cardNumber: {
+      type: String,
+      required: true
+    },
+    cardholderName: {
+      type: String,
+      required: true
+    },
+    brand: {
+      type: String,
+      required: true
+    }
   }
 }, {
   timestamps: true
