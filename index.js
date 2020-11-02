@@ -9,6 +9,7 @@ const isAuthenticated = require('./middlewares/is-authenticated')
 
 // Services
 const authService = require('./services/auth')
+const scheduleService = require('./services/schedule')
 
 // Api Setup
 const app = express()
@@ -23,6 +24,9 @@ app.post('/login', authService.login)
 app.post('/users', isAuthenticated, authService.registerUser)
 app.get('/users/', isAuthenticated, authService.listUsers)
 app.get('/users/:profile', isAuthenticated, authService.listUsersProfile)
+
+// Service routes
+app.use('/schedule', scheduleService);
 
 // Connecting mongoose
 mongoose
