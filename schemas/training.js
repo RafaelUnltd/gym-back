@@ -2,7 +2,7 @@ const { Timestamp } = require('mongodb')
 const mongoose = require('mongoose')
 const { Schema } = mongoose
 
-const ScheduleSchema = new Schema({
+const TrainingSchema = new Schema({
   idUser: Schema.Types.ObjectId,
   exercises: {
     type: [{
@@ -16,4 +16,4 @@ const ScheduleSchema = new Schema({
     timestamps: true
   })
 
-module.exports = mongoose.model('training', ScheduleSchema)
+module.exports = mongoose.model('training', TrainingSchema)

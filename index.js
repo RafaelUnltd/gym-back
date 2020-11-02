@@ -20,8 +20,9 @@ app.use(cors())
 
 // Auth routes
 app.post('/login', authService.login)
-app.get('/users', isAuthenticated, authService.listUsers)
 app.post('/users', isAuthenticated, authService.registerUser)
+app.get('/users/', isAuthenticated, authService.listUsers)
+app.get('/users/:profile', isAuthenticated, authService.listUsersProfile)
 
 // Connecting mongoose
 mongoose
