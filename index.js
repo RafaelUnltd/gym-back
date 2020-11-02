@@ -10,6 +10,9 @@ const isAuthenticated = require('./middlewares/is-authenticated')
 // Services
 const authService = require('./services/auth')
 const scheduleService = require('./services/schedule')
+const trainingService = require('./services/training')
+const medicalExamService = require('./services/medicalExam')
+
 
 // Api Setup
 const app = express()
@@ -27,6 +30,12 @@ app.get('/users/:profile', isAuthenticated, authService.listUsersProfile)
 
 // Service routes
 app.use('/schedule', scheduleService);
+
+// Training routes
+app.use('/training', trainingService);
+
+// Medical Exam routes
+app.use('/medical-exam', medicalExamService);
 
 // Connecting mongoose
 mongoose
