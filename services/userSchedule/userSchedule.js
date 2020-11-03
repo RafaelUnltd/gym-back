@@ -24,6 +24,18 @@ router.get('/getByUserId/:userId', (req, res) => {
     })
 });
 
+router.get('/getByScheduleId/:scheduleId', (req, res) => {
+  UserSchedule
+    .find({scheduleId: req.params.scheduleId})
+    .populate('userId')
+    .then(userSchedules => {
+      res.json(userSchedules);
+    }).catch(err => {
+      console.error(err)
+      res.status(500).json(err)
+    })
+});
+
 router.post('/insert', (req, res) => {
   const newUserSchedule = new UserSchedule(req.body);  
   newUserSchedule.save().then(userSchedule => {

@@ -24,6 +24,18 @@ router.get('/getByUserId/:userId', (req, res) => {
     })
 });
 
+router.get('/getByPlanId/:planId', (req, res) => {
+  UserPlan
+    .find({planId: req.params.planId})
+    .populate('planId')
+    .then(userPlans => {
+      res.json(userPlans);
+    }).catch(err => {
+      console.error(err)
+      res.status(500).json(err)
+    })
+});
+
 router.post('/insert', (req, res) => {
   const newUserPlan = new UserPlan(req.body);  
   newUserPlan.save().then(userPlan => {
