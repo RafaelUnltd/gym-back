@@ -4,8 +4,8 @@ const router = express.Router();
 const Training = require('../../schemas/training')
 
 // Middlewares
-const isAuthenticated = require('./middlewares/is-authenticated')
-const isAbleTraining = require('./middlewares/is-able-training')
+const isAuthenticated = require('../../middlewares/is-authenticated')
+const isAbleTraining = require('../../middlewares/is-able-training')
 
 router.get('/getById/:id', isAuthenticated, (req, res) => {    
     Training.findById(req.params.id).then(trainings => {

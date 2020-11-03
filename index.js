@@ -27,9 +27,9 @@ app.use(cors())
 
 // Auth routes
 app.post('/login', authService.login)
-app.post('/users', isAuthenticated, authService.registerUser)
-app.get('/users/', isAuthenticated, authService.listUsers)
-app.get('/users/:profile', isAuthenticated, authService.listUsersProfile)
+app.post('/users', authService.registerUser)
+app.get('/users/', authService.listUsers)
+app.get('/users/:profile', authService.listUsersProfile)
 
 // Plan routes
 app.use('/plan', planService);

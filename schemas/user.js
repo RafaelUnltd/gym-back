@@ -22,22 +22,23 @@ const UserSchema = new Schema({
   cpf: String,
   identity: String,
   dob: Date,
+  exams: [{
+    type: Schema.Types.ObjectId,
+    ref: 'medicalExam'
+  }],
   creditCard: {
     cardNumber: {
-      type: String,
-      required: true
+      type: String
     },
     cardholderName: {
-      type: String,
-      required: true
+      type: String
     },
     brand: {
-      type: String,
-      required: true
+      type: String
     }
   }
 }, {
   timestamps: true
 })
 
-module.exports = mongoose.model('user', UserSchema)
+module.exports = mongoose.model('user', UserSchema, 'user')

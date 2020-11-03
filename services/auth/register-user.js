@@ -1,12 +1,7 @@
 const User = require('../../schemas/user')
 
 function requestInvitation (req, res) {
-  const newUser = new User({
-    name: req.body.name,
-    username: req.body.username,
-    password: req.body.password,
-    profile: req.body.profile
-  })
+  const newUser = new User(req.body)
 
   newUser.save().then(user => {
     res.json(user)

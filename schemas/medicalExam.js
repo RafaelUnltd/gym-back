@@ -1,10 +1,10 @@
-const { Timestamp } = require('mongodb')
 const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const MedicalExamSchema = new Schema({
-  idUser: {
+  user: {
     type: Schema.Types.ObjectId,
+    ref: 'user',
     required: true
   },
   weight: {
@@ -39,4 +39,4 @@ const MedicalExamSchema = new Schema({
   timestamps: true
 })
 
-module.exports = mongoose.model('medicalExam', MedicalExamSchema)
+module.exports = mongoose.model('medicalExam', MedicalExamSchema, 'medicalExam')
