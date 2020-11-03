@@ -9,7 +9,13 @@ const UserPlanSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,
     required: true
+  },
+  isValid: {
+    type: Boolean,
+    required: true
   }
+}, {
+  timestamps: true
 })
 
 module.exports = mongoose.model('userPlan', UserPlanSchema)

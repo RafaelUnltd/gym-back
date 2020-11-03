@@ -6,58 +6,58 @@ const MedicalExam = require('../../schemas/medicalExam')
 const isAuthenticated = require('./middlewares/is-authenticated')
 
 router.get('/getById/:id', isAuthenticated, (req, res) => {    
-    MedicalExam.findById(req.params.id).then(medicalExams => {
-        res.json(medicalExams)
-    }).catch(err => {
-        console.error(err)
-        res.status(500).json(err)
-    })
+  MedicalExam.findById(req.params.id).then(medicalExams => {
+    res.json(medicalExams)
+  }).catch(err => {
+    console.error(err)
+    res.status(500).json(err)
+  })
 });
 
 router.get('/getAll', isAuthenticated, (req, res) => {
-    MedicalExam.find().then(medicalExams => {
-      res.json(medicalExams)
-    }).catch(err => {
-      console.error(err)
-      res.status(500).json(err)
-    })
+  MedicalExam.find().then(medicalExams => {
+    res.json(medicalExams)
+  }).catch(err => {
+    console.error(err)
+    res.status(500).json(err)
+  })
 });
 
 router.get('/getByUser/:id', isAuthenticated, (req, res) => {
-    MedicalExam.find({idUser: req.params.id}).then(medicalExams => {
-      res.json(medicalExams)
-    }).catch(err => {
-      console.error(err)
-      res.status(500).json(err)
-    })
+  MedicalExam.find({idUser: req.params.id}).then(medicalExams => {
+    res.json(medicalExams)
+  }).catch(err => {
+    console.error(err)
+    res.status(500).json(err)
+  })
 });
 
-router.post('/insert', isAuthenticated, async (req, res) => {
-    const newMedicalExam = new MedicalExam(req.body);  
-    newMedicalExam.save().then(medicalexam => {
-      res.json(medicalexam)
-    }).catch(err => {
-      console.error(err)
-      res.status(500).json(err)
-    })
+router.post('/insert', isAuthenticated, (req, res) => {
+  const newMedicalExam = new MedicalExam(req.body);  
+  newMedicalExam.save().then(medicalexam => {
+    res.json(medicalexam)
+  }).catch(err => {
+    console.error(err)
+    res.status(500).json(err)
+  })
 })
 
-router.put('/update', isAuthenticated, async (req, res) => {
-    MedicalExam.updateOne({_id: req.body._id}, req.body).then(medicalexam => {
-      res.json(medicalexam)
-    }).catch(err => {
-      console.error(err)
-      res.status(500).json(err)
-    })
+router.put('/update', isAuthenticated, (req, res) => {
+  MedicalExam.updateOne({_id: req.body._id}, req.body).then(medicalexam => {
+    res.json(medicalexam)
+  }).catch(err => {
+    console.error(err)
+    res.status(500).json(err)
+  })
 });
 
-router.delete('/delete/:id', isAuthenticated, async (req, res) => {
-    MedicalExam.deleteOne({_id: req.params.id}).then(medicalexam => {
-        res.json(medicalexam)
-    }).catch(err => {
-        console.error(err)
-        res.status(500).json(err)
-    })
+router.delete('/delete/:id', isAuthenticated, (req, res) => {
+  MedicalExam.deleteOne({_id: req.params.id}).then(medicalexam => {
+    res.json(medicalexam)
+  }).catch(err => {
+    console.error(err)
+    res.status(500).json(err)
+  })
 });
 
 

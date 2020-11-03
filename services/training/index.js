@@ -1,3 +1,3 @@
-const TrainingRoute = require('./training')
+const TrainingService = require('./training')
 
-module.exports = TrainingRoute
+module.exports = TrainingService

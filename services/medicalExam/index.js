@@ -1,3 +1,3 @@
-const MedicalExamRoute = require('./medicalExam')
+const MedicalExamService = require('./medicalExam')
 
-module.exports = MedicalExamRoute
+module.exports = MedicalExamService

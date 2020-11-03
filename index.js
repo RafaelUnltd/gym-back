@@ -9,7 +9,10 @@ const isAuthenticated = require('./middlewares/is-authenticated')
 
 // Services
 const authService = require('./services/auth')
+const planService = require('./services/plan')
+const userPlanService = require('./services/userPlan')
 const scheduleService = require('./services/schedule')
+const userScheduleService = require('./services/userSchedule')
 const trainingService = require('./services/training')
 const medicalExamService = require('./services/medicalExam')
 
@@ -28,8 +31,17 @@ app.post('/users', isAuthenticated, authService.registerUser)
 app.get('/users/', isAuthenticated, authService.listUsers)
 app.get('/users/:profile', isAuthenticated, authService.listUsersProfile)
 
-// Service routes
+// Plan routes
+app.use('/plan', planService);
+
+// User Plan routes
+app.use('/user-plan', userPlanService);
+
+// Schedule routes
 app.use('/schedule', scheduleService);
+
+// User Schedule routes
+app.use('/user-schedule', userScheduleService);
 
 // Training routes
 app.use('/training', trainingService);

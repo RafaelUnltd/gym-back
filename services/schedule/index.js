@@ -1,3 +1,3 @@
-const ScheduleRoute = require('./schedule')
+const ScheduleService = require('./schedule')
 
-module.exports = ScheduleRoute
+module.exports = ScheduleService

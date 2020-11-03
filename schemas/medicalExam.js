@@ -3,7 +3,10 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const MedicalExamSchema = new Schema({
-  idUser: Schema.Types.ObjectId,
+  idUser: {
+    type: Schema.Types.ObjectId,
+    required: true
+  },
   weight: {
     type: Number,
     required: true
