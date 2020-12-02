@@ -1,29 +1,24 @@
-const { Timestamp } = require('mongodb')
 const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const ScheduleSchema = new Schema({
-  modality: {
+  dayOfWeek: {
     type: String,
-    enum: ['Natação', 'Musculação', 'Spinning', 'crossfit', 'Ritmos'],
+    enum: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'],
     required: true
   },
-  maxClient: {
+  maxClients: {
     type: Number,
     required: true
   },
   startTime: {
-    type: Number,
+    type: String,
     required: true
   },
-  duration: {
+  enrolledClients: {
     type: Number,
-    required: true
-  },
-  dayOfWeek: {
-    type: Number,
-    required: true
+    default: 0
   }
 })
 
-module.exports = mongoose.model('schedule', ScheduleSchema)
+module.exports = mongoose.model('schedule', ScheduleSchema, 'schedule')

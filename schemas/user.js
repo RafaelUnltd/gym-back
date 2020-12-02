@@ -26,6 +26,14 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'medicalExam'
   }],
+  trainings: [{
+    type: Schema.Types.ObjectId,
+    ref: 'training'
+  }],
+  enrollments: [{
+    type: Schema.Types.ObjectId,
+    ref: 'enrollment'
+  }],
   creditCard: {
     cardNumber: {
       type: String

@@ -11,11 +11,10 @@ const isAuthenticated = require('./middlewares/is-authenticated')
 const authService = require('./services/auth')
 const planService = require('./services/plan')
 const userPlanService = require('./services/userPlan')
-const scheduleService = require('./services/schedule')
 const userScheduleService = require('./services/userSchedule')
 const trainingService = require('./services/training')
 const medicalExamService = require('./services/medicalExam')
-
+const modalityService = require('./services/modality')
 
 // Api Setup
 const app = express()
@@ -29,16 +28,19 @@ app.use(cors())
 app.post('/login', authService.login)
 app.post('/users', authService.registerUser)
 app.get('/users/', authService.listUsers)
-app.get('/users/:profile', authService.listUsersProfile)
+app.get('/users/:id', authService.getUser)
+app.get('/users/profile/:profile', authService.listUsersProfile)
+app.put('/users/enroll/:id', authService.enrollUser)
+
+// Modalities routes
+app.get('/modalities', modalityService.listModalities)
+app.post('/modalities', modalityService.registerModality)
 
 // Plan routes
 app.use('/plan', planService);
 
 // User Plan routes
 app.use('/user-plan', userPlanService);
-
-// Schedule routes
-app.use('/schedule', scheduleService);
 
 // User Schedule routes
 app.use('/user-schedule', userScheduleService);

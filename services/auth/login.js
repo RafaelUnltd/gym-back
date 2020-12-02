@@ -15,7 +15,7 @@ function login (req, res) {
       }, process.env.SECRET, {
         expiresIn: 259200 // expires in 3 dayss
       })
-      res.status(200).json({ token })
+      res.status(200).json({ token, profile: user.profile })
     } else {
       res.status(401).json({ message: 'Invalid username and/or password' })
     }

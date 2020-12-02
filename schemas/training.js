@@ -1,19 +1,22 @@
-const { Timestamp } = require('mongodb')
 const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const TrainingSchema = new Schema({
-  idUser: Schema.Types.ObjectId,
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'user',
+    required: true
+  },
   exercises: {
     type: [{
-        name: {type: String},
-        muscle: {type: String},
-        repetitions: {type: Number}
+      name: { type: String },
+      muscle: { type: String },
+      repetitions: { type: Number }
     }],
     required: true
   }
 }, {
-    timestamps: true
-  })
+  timestamps: true
+})
 
-module.exports = mongoose.model('training', TrainingSchema)
+module.exports = mongoose.model('training', TrainingSchema, 'training')

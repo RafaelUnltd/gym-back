@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 const Training = require('../../schemas/training')
+const User = require('../../schemas/user')
 
 // Middlewares
 const isAuthenticated = require('../../middlewares/is-authenticated')
-const isAbleTraining = require('../../middlewares/is-able-training')
 
 router.get('/getById/:id', isAuthenticated, (req, res) => {    
     Training.findById(req.params.id).then(trainings => {
@@ -16,7 +16,7 @@ router.get('/getById/:id', isAuthenticated, (req, res) => {
     })
 });
 
-router.get('/getAll', isAuthenticated, (req, res) => {
+router.get('/getAll', (req, res) => {
   Training.find().then(trainings => {
     res.json(trainings)
   }).catch(err => {
@@ -34,14 +34,20 @@ router.get('/getByUserId', isAuthenticated, (req, res) => {
     })
 });
 
-router.post('/insert', isAbleTraining, (req, res) => {
-    const newTraining = new Training(req.body);  
-    newTraining.save().then(training => {
+router.post('/insert', (req, res) => {
+  const newTraining = new Training(req.body)
+  newTraining.save().then(training => {
+    User.findById(req.body.user, (_, user) => {
+      if (user) {
+        user.trainings.push(training)
+        user.save()
+      }
       res.json(training)
-    }).catch(err => {
-      console.error(err)
-      res.status(500).json(err)
     })
+  }).catch(err => {
+    console.error(err)
+    res.status(500).json(err)
+  })
 })
 
 router.put('/update', isAuthenticated, (req, res) => {
